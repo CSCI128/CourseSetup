@@ -1,3 +1,9 @@
+function refresh-path {
+    $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") +
+                ";" +
+                [System.Environment]::GetEnvironmentVariable("Path","User")
+}
+
 $PythonVersion = "python-3.11.7"
 $PythonWindowsURL = "https://www.python.org/ftp/python/3.11.7/$PythonVersion"
 
@@ -15,13 +21,20 @@ Else {
 
 Write-Host "Detecting if python is already installed..."
 
-python --version
+python --version *>$null
 
 If (-Not $?) {
-    Write-Host "Python is not installed. Installing $PythonVersion..."
+    Write-Host "Python is not installed. Downloaded $PythonVersion..."
     Invoke-WebRequest $PythonWindowsURL -OutFile "$($Env:temp)\$PythonVersion.exe"
     Write-Host "Download Complete! Installing for current user..."
 
     # This should install python for the current user and add it to their path. Also removes the launcher (bc it makes things confusing imo)
-    Start-Process -FilePath "$($Env:temp)\$PythonVersion.exe" -ArgumentList "/passive","InstallAllUsers=0","PrependPath=1","Include_launcher=0"
+    Start-Process -FilePath "$($Env:temp)\$PythonVersion.exe" -ArgumentList "/passive","InstallAllUsers=0","PrependPath=1","Include_launcher=0" -Wait
 }
+
+Write-Host "Python is installed! Refreshing path..."
+
+refresh-path
+
+
+
