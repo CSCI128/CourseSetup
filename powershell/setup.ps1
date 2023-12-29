@@ -1,19 +1,23 @@
-Write-Host "Detecting if python is already installed..."
-
-python --version
 $PythonVersion = "python-3.11.7"
 $PythonWindowsURL = "https://www.python.org/ftp/python/3.11.7/$PythonVersion"
 
-If((Get-CimInStance Win32_OperatingSystem).OSArchitecture -eq "64-Bit"){
+If ((Get-CimInStance Win32_OperatingSystem).OSArchitecture -eq "64-Bit"){
+    Write-Host "Detected 64 bit operating system, if you have an ARM windows computer, first off, why? and second, download the ARM version at python.org"
+
     $PythonWindowsURL = $PythonWindowsURL + "-amd64.exe"
 }
 Else {
     # I swear if anyone has a 32 os imma cry
+    Write-Host "Detected 32 bit operating system, if you have an ARM windows computer, first off, why? and second, download the ARM version at python.org"
     $PythonWindowsURL = $PythonWindowsURL + ".exe"
 }
 
 
-If (-not $?) {
+Write-Host "Detecting if python is already installed..."
+
+python --version
+
+If (-Not $?) {
     Write-Host "Python is not installed. Installing $PythonVersion..."
     Invoke-WebRequest $PythonWindowsURL -OutFile "$($Env:temp)\$PythonVersion.exe"
     Write-Host "Download Complete! Installing for current user..."
