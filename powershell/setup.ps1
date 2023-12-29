@@ -18,6 +18,6 @@ If (-not $?) {
     Invoke-WebRequest $PythonWindowsURL -OutFile "$($Env:temp)\$PythonVersion.exe"
     Write-Host "Download Complete! Installing for current user..."
 
-    # This should install python for the current user and add it to their path
-    Start-Process -FilePath "$($Env:temp)\$PythonVersion.exe" -ArgumentList "/passive","InstallAllUsers=0","PrependPath=1"
+    # This should install python for the current user and add it to their path. Also removes the launcher (bc it makes things confusing imo)
+    Start-Process -FilePath "$($Env:temp)\$PythonVersion.exe" -ArgumentList "/passive","InstallAllUsers=0","PrependPath=1","Include_launcher=0"
 }
