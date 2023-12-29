@@ -24,7 +24,7 @@ Write-Host "Detecting if python is already installed..."
 python --version *>$null
 
 If (-Not $?) {
-    Write-Host "Python is not installed. Downloaded $PythonVersion..."
+    Write-Host "Python is not installed. Downloading $PythonVersion..."
     Invoke-WebRequest $PythonWindowsURL -OutFile "$($Env:temp)\$PythonVersion.exe"
     Write-Host "Download Complete! Installing for current user..."
 
