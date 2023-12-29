@@ -37,4 +37,15 @@ Write-Host "Python is installed! Refreshing path..."
 refresh-path
 
 
+# Now for the pip packages!
+
+# Course stuff
+pip install matplotlib
+
+# Autograder stuff
+# Ebic - we can do this with a web url!
+pip install -r https://raw.githubusercontent.com/CSCI128/128Autograder/main/source/requirements.txt
+
+
+
 
