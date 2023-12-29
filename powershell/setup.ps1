@@ -40,11 +40,31 @@ refresh-path
 # Now for the pip packages!
 
 # Course stuff
+Write-Host "Installing class packages..."
 pip install matplotlib
 
 # Autograder stuff
 # Ebic - we can do this with a web url!
+Write-Host "Installing autograder pacakges..."
 pip install -r https://raw.githubusercontent.com/CSCI128/128Autograder/main/source/requirements.txt
+
+
+# Now for VSCode!
+# VS code doesnt have a 32bit installer. Good.
+
+$VSCodeURL = "https://code.visualstudio.com/sha/download?build=stable&os=win32-x64-user"
+
+code --version *>$null
+
+If (-Not $?){
+    Write-Host "VS Code is not installed! Downloading VS Code..."
+    Invoke-WebRequest $VSCodeURL -OutFile "$($Env:temp)\vscode-installer.exe"
+
+    Write-Host "VS Code downloaded! Installing..."
+    Start-Process -FilePath "$($Env:temp)\vscode-installer.exe" -ArgumentList "/VERYSILENT /MERGETASKS=!runcode" -Wait
+}
+
+Write-Host "VS Code is installed! Course setup complete!"
 
 
 
