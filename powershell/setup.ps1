@@ -54,7 +54,11 @@ pip install -r https://raw.githubusercontent.com/CSCI128/128Autograder/main/sour
 
 $VSCodeURL = "https://code.visualstudio.com/sha/download?build=stable&os=win32-x64-user"
 
-code --version *>$null
+Try {
+    code --version *>$null
+} Catch {
+    # Do nothing - the error is expected
+}
 
 If (-Not $?){
     Write-Host "VS Code is not installed! Downloading VS Code..."
