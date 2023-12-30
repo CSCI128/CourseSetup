@@ -22,8 +22,8 @@ install_python ()
         echo "alias pip=pip3" >> ~/.zshrc
 
     else
-        echo "alias python=python3" >> ~/.bashrc
-        echo "alias pip=pip3" >> ~/.bashrc
+        echo "alias python=python3.11" >> ~/.bashrc
+        echo "alias pip='python -m pip'" >> ~/.bashrc
     fi
 
 }
