@@ -58,7 +58,7 @@ pip install -r https://raw.githubusercontent.com/CSCI128/128Autograder/main/sour
 # Now for VSCode!
 # VS code doesnt have a 32bit installer. Good.
 
-Write-Host "Checking if VS Code is installed"
+Write-Host "Checking if VS Code is installed..."
 
 $VSCodeURL = "https://code.visualstudio.com/sha/download?build=stable&os=win32-x64-user"
 
@@ -70,6 +70,7 @@ Try {
 
 If (-Not $?){
     Write-Host "VS Code is not installed! Downloading VS Code..."
+    Write-Host "(This might take a minute!)"
     Invoke-WebRequest $VSCodeURL -OutFile "$($Env:temp)\vscode-installer.exe"
 
     Write-Host "VS Code downloaded! Installing..."
