@@ -8,13 +8,13 @@ $PythonVersion = "python-3.11.7"
 $PythonWindowsURL = "https://www.python.org/ftp/python/3.11.7/$PythonVersion"
 
 If ((Get-CimInStance Win32_OperatingSystem).OSArchitecture -eq "64-Bit"){
-    Write-Host "Detected 64 bit operating system, if you have an ARM windows computer, first off, why? and second, download the ARM version at python.org"
+    Write-Host "Detected 64 bit operating system"
 
     $PythonWindowsURL = $PythonWindowsURL + "-amd64.exe"
 }
 Else {
     # I swear if anyone has a 32 os imma cry
-    Write-Host "Detected 32 bit operating system, if you have an ARM windows computer, first off, why? and second, download the ARM version at python.org"
+    Write-Host "Detected 32 bit operating system"
     $PythonWindowsURL = $PythonWindowsURL + ".exe"
 }
 
@@ -61,7 +61,7 @@ If (-Not $?){
     Invoke-WebRequest $VSCodeURL -OutFile "$($Env:temp)\vscode-installer.exe"
 
     Write-Host "VS Code downloaded! Installing..."
-    Start-Process -FilePath "$($Env:temp)\vscode-installer.exe" -ArgumentList "/VERYSILENT /MERGETASKS=!runcode" -Wait
+    Start-Process -FilePath "$($Env:temp)\vscode-installer.exe" -ArgumentList "/SILENT","/MERGETASKS=!runcode","/SUPPRESSMSGBOXES" -Wait
 }
 
 Write-Host "VS Code is installed! Course setup complete!"
