@@ -28,22 +28,12 @@ install_python ()
 
 }
 
-echo "This script installs the xcode command line tools, brew (the macos package manager), python, and vscode."
-echo "You will be asked for your password to install the command line tools and brew. There won't be any output when you enter it, but don't worry\!"
+echo "This script installs brew (the macos package manager), python, and vscode."
+echo "You will be asked for your password to install the brew. There won't be any output when you enter it, but don't worry\!"
 
 echo "Press any key to start installation!"
 
 read 
-
-echo "Checking to see if xcode command line tools are already installed..."
-xcode-select -p 1>/dev/null
-
-if [ $? -ne 0 ]; then
-    echo "Xcode command line tools are not installed! Installing..."
-    sudo xcode-select --install
-fi
-
-echo "Xcode command line tools are installed!"
 
 echo "Checking if brew is already installed..."
 brew --version > /dev/null 2>&1
