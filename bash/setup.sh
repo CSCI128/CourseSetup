@@ -83,6 +83,7 @@ code --version > /dev/null 2>&1
 
 if [ $? -ne 0 ]; then
     echo "VS code is not installed! Installing..."
+    echo "If you have already installed vs code, nothing will be modified."
     brew install --cask visual-studio-code
 fi
 
