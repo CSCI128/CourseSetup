@@ -18,8 +18,8 @@ install_python ()
     brew install python@3.11
 
     if [[ $SHELL == '/bin/zsh' ]]; then
-        echo "alias python=python3" >> ~/.zshrc
-        echo "alias pip=pip3" >> ~/.zshrc
+        echo "alias python=python3.11" >> ~/.zshrc
+        echo "alias pip='python -m pip'" >> ~/.zshrc
 
     else
         echo "alias python=python3.11" >> ~/.bashrc
