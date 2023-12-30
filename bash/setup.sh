@@ -19,18 +19,24 @@ echo "Press any key to start installation!"
 read 
 
 echo "Checking to see if xcode command line tools are already installed..."
-if [[ ! $(pkgutil --pkg-info=com.apple.pkg.CLTools_Executables) ]]; then
+if [[ ! $(pkgutil --pkg-info=com.apple.pkg.CLTools_Executables > /dev/null 2>&1) ]]; then
     echo "Xcode command line tools are not installed! Installing..."
     sudo xcode-select --install
 
 fi
 
-echo "Installing brew..."
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+echo "Checking if brew is already installed..."
+if [[ ! $(brew --version > /dev/null 2>&1) ]]; then
+    echo "Brew is not installed! Installing brew..."
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+fi
+
+echo "Brew is installed!"
 
 reload_env
 
 echo "Installing Python..."
+# This might be a problem spot
 brew install python@3.11
 
 if [[ $SHELL == '/bin/zsh' ]]; then
@@ -53,7 +59,7 @@ pip install -r https://raw.githubusercontent.com/CSCI128/128Autograder/main/sour
 reload_env
 
 echo "Checking if vscode is installed"
-if [[ ! $(code --version >/dev/null 2>&1) ]]; then
+if [[ ! $(code --version > /dev/null 2>&1) ]]; then
     echo "VS code is not installed! Installing..."
     brew install --cask visual-studio-code
 fi
