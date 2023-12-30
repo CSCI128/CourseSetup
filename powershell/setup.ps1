@@ -21,7 +21,13 @@ Else {
 
 Write-Host "Detecting if python is already installed..."
 
-python --version *>$null
+# Also putting this in a try catch if students have disabled the default behavior on windows
+
+Try{
+    python --version *>$null
+} Catch {
+    # Suppress error as its expected
+}
 
 If (-Not $?) {
     Write-Host "Python is not installed. Downloading $PythonVersion..."
@@ -51,6 +57,8 @@ pip install -r https://raw.githubusercontent.com/CSCI128/128Autograder/main/sour
 
 # Now for VSCode!
 # VS code doesnt have a 32bit installer. Good.
+
+Write-Host "Checking if VS Code is installed"
 
 $VSCodeURL = "https://code.visualstudio.com/sha/download?build=stable&os=win32-x64-user"
 
