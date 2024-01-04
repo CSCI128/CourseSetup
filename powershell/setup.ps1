@@ -4,6 +4,15 @@ function refresh-path {
                 [System.Environment]::GetEnvironmentVariable("Path","User")
 }
 
+function install-python($PythonVersion, $PythonWindowsURL) {
+    Write-Host "Python is not installed. Downloading $PythonVersion..."
+    Invoke-WebRequest $PythonWindowsURL -OutFile "$($Env:temp)\$PythonVersion.exe"
+    Write-Host "Download Complete! Installing for current user..."
+
+    # This should install python for the current user and add it to their path. Also removes the launcher (bc it makes things confusing imo)
+    Start-Process -FilePath "$($Env:temp)\$PythonVersion.exe" -ArgumentList "/passive","InstallAllUsers=0","PrependPath=1","Include_launcher=0" -Wait
+}
+
 $PythonVersion = "python-3.11.7"
 $PythonWindowsURL = "https://www.python.org/ftp/python/3.11.7/$PythonVersion"
 
@@ -30,12 +39,17 @@ Try{
 }
 
 If (-Not $?) {
-    Write-Host "Python is not installed. Downloading $PythonVersion..."
-    Invoke-WebRequest $PythonWindowsURL -OutFile "$($Env:temp)\$PythonVersion.exe"
-    Write-Host "Download Complete! Installing for current user..."
+    install-python $PythonVersion $PythonWindowsURL
+}
 
-    # This should install python for the current user and add it to their path. Also removes the launcher (bc it makes things confusing imo)
-    Start-Process -FilePath "$($Env:temp)\$PythonVersion.exe" -ArgumentList "/passive","InstallAllUsers=0","PrependPath=1","Include_launcher=0" -Wait
+Try {
+    python -c 'import sys; assert sys.version_info >= (3,10)' *>$null
+} Catch {
+    # Suppress error as its expected
+}
+
+If (-Not $?) {
+    install-python $PythonVersion $PythonWindowsURL
 }
 
 Write-Host "Python is installed! Refreshing path..."
