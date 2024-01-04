@@ -77,7 +77,18 @@ If (-Not $?){
     Start-Process -FilePath "$($Env:temp)\vscode-installer.exe" -ArgumentList "/SILENT","/MERGETASKS=!runcode","/SUPPRESSMSGBOXES" -Wait
 }
 
-Write-Host "VS Code is installed! Course setup complete!"
+Write-Host "VS Code is installed!"
+
+refresh-path
+
+Write-Host "Installing Python Extension for VS Code..."
+Try {
+    code --install-extension ms-python.python
+} Catch {
+    Write-Host "Failed to install Python Extension! Please refer to https://marketplace.visualstudio.com/items?itemName=ms-python.python to install the extension!"
+}
+
+Write-Host "Course setup is complete!"
 
 
 
