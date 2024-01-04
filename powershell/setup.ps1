@@ -47,7 +47,7 @@ refresh-path
 
 # Course stuff
 Write-Host "Installing class packages..."
-pip install matplotlib
+pip install -r https://raw.githubusercontent.com/CSCI128/CourseSetup/main/requirements.txt
 
 # Autograder stuff
 # Ebic - we can do this with a web url!

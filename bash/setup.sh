@@ -8,10 +8,10 @@ reload_env ()
     else
         source ~/.bashrc
     fi
-    
+
 }
 
-install_python () 
+install_python ()
 {
     echo "Installing Python 3.11..."
     # This might be a problem spot
@@ -33,7 +33,7 @@ echo "You will be asked for your password to install the brew. There won't be an
 
 echo "Press any key to start installation!"
 
-read 
+read
 
 echo "Checking if brew is already installed..."
 brew --version > /dev/null 2>&1
@@ -61,7 +61,7 @@ fi
 reload_env
 
 echo "Installing class dependancies"
-pip install matplotlib
+pip install -r https://raw.githubusercontent.com/CSCI128/CourseSetup/main/requirements.txt
 
 echo "Installing autograder dependancies"
 pip install -r https://raw.githubusercontent.com/CSCI128/128Autograder/main/source/requirements.txt
