@@ -42,16 +42,6 @@ If (-Not $?) {
     install-python $PythonVersion $PythonWindowsURL
 }
 
-Try {
-    python -c 'import sys; assert sys.version_info >= (3,10)' *>$null
-} Catch {
-    # Suppress error as its expected
-}
-
-If (-Not $?) {
-    install-python $PythonVersion $PythonWindowsURL
-}
-
 Write-Host "Python is installed! Refreshing path..."
 
 refresh-path
