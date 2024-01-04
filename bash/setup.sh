@@ -72,9 +72,29 @@ echo "Checking if vscode is installed"
 code --version > /dev/null 2>&1
 
 if [ $? -ne 0 ]; then
-    echo "VS code is not installed! Installing..."
+    echo "Vscode is not installed! Installing..."
     echo "If you have already installed vs code, nothing will be modified."
     brew install --cask visual-studio-code
 fi
+echo "vscode installed!"
 
-echo "vscode installed! Course setup complete!"
+reload_env
+
+echo "Checking to see if vscode is on the path..."
+code --version > /dev/null 2>&1
+
+if [ $? -ne 0 ]; then
+    echo 'Unable to automatically install python extension for VS code. Please follow directions at this link: https://marketplace.visualstudio.com/items?itemName=ms-python.python'
+    echo "Course setup complete!"
+    exit 0
+fi
+
+
+code --install-extension ms-python.python
+
+if [ $? -ne 0 ]; then
+    echo 'Unable to automatically install python extension for VS code. Please follow directions at this link: https://marketplace.visualstudio.com/items?itemName=ms-python.python'
+fi
+
+echo "Course setup complete!"
+
