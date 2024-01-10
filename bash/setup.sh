@@ -33,6 +33,13 @@ fi
 
 echo "Brew is installed!"
 
+echo "Adding brew to path"
+
+echo "export PATH=/opt/homebrew/bin:$PATH" >> ~/.zshrc && source ~/.zshrc
+echo "export Path=/usr/local/bin:$PATH" >> ~/.zshrc && source  ~/.zshrc
+
+
+
 reload_env
 
 echo "checking to see if python 3.10 or higher is installed..."
