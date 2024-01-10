@@ -13,18 +13,6 @@ reload_env ()
 
 install_python ()
 {
-    echo "Installing Python 3.11..."
-    # This might be a problem spot
-    brew install python@3.11
-
-    if [[ $SHELL == '/bin/zsh' ]]; then
-        echo "alias python=python3.11" >> ~/.zshrc
-        echo "alias pip='python -m pip'" >> ~/.zshrc
-
-    else
-        echo "alias python=python3.11" >> ~/.bashrc
-        echo "alias pip='python -m pip'" >> ~/.bashrc
-    fi
 
 }
 
@@ -52,10 +40,32 @@ echo "checking to see if python 3.10 or higher is installed..."
 python --version > /dev/null 2>&1
 
 if [ $? -ne 0 ]; then
-    install_python
+    echo "Installing Python 3.11..."
+    # This might be a problem spot
+    brew install python@3.11
+
+    if [[ $SHELL == '/bin/zsh' ]]; then
+        echo "alias python=python3.11" >> ~/.zshrc
+        echo "alias pip='python -m pip'" >> ~/.zshrc
+
+    else
+        echo "alias python=python3.11" >> ~/.bashrc
+        echo "alias pip='python -m pip'" >> ~/.bashrc
+    fi
 
 elif ! python -c 'import sys; assert sys.version_info >= (3,10)' > /dev/null; then
-    install_python
+    echo "Installing Python 3.11..."
+    # This might be a problem spot
+    brew install python@3.11
+
+    if [[ $SHELL == '/bin/zsh' ]]; then
+        echo "alias python=python3.11" >> ~/.zshrc
+        echo "alias pip='python -m pip'" >> ~/.zshrc
+
+    else
+        echo "alias python=python3.11" >> ~/.bashrc
+        echo "alias pip='python -m pip'" >> ~/.bashrc
+    fi
 fi
 
 reload_env
