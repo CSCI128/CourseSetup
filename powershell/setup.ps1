@@ -13,8 +13,8 @@ function install-python($PythonVersion, $PythonWindowsURL) {
     Start-Process -FilePath "$($Env:temp)\$PythonVersion.exe" -ArgumentList "/passive","InstallAllUsers=0","PrependPath=1","Include_launcher=0" -Wait
 }
 
-$PythonVersion = "python-3.11.7"
-$PythonWindowsURL = "https://www.python.org/ftp/python/3.11.7/$PythonVersion"
+$PythonVersion = "python-3.12.5"
+$PythonWindowsURL = "https://www.python.org/ftp/python/3.12.5/$PythonVersion"
 
 If ((Get-CimInStance Win32_OperatingSystem).OSArchitecture -eq "64-Bit"){
     Write-Host "Detected 64 bit operating system"
@@ -46,6 +46,8 @@ Write-Host "Python is installed! Refreshing path..."
 
 refresh-path
 
+Write-Host "Detecting if git is already installed..."
+
 Try {
     git --version *>$null
 } Catch {
@@ -53,6 +55,7 @@ Try {
 }
 
 if (-Not $?) {
+    Write-Host "Installing git..."
     $exePath = "$env:TEMP\git.exe"
 
 # Download git installer
