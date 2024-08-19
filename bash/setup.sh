@@ -23,7 +23,7 @@ echo "export PATH=/opt/homebrew/bin:$PATH" >> ~/.zshrc && source ~/.zshrc
 echo "export Path=/usr/local/bin:$PATH" >> ~/.zshrc && source  ~/.zshrc
 
 
-reload_env
+source ~/.zshrc
 
 echo "checking to see if python 3.11 or higher is installed..."
 
@@ -45,7 +45,7 @@ elif ! python -c 'import sys; assert sys.version_info >= (3,11)' > /dev/null; th
     echo "alias pip='python -m pip'" >> ~/.zshrc
 fi
 
-reload_env
+source ~/.zshrc
 
 python --version > /dev/null 2>&1
 
@@ -63,7 +63,7 @@ pip install -r https://raw.githubusercontent.com/CSCI128/CourseSetup/main/requir
 echo "Installing autograder dependancies"
 pip install -r https://raw.githubusercontent.com/CSCI128/128Autograder/main/source/requirements.txt
 
-reload_env
+source ~/.zshrc
 
 echo "Checking if vscode is installed"
 code --version > /dev/null 2>&1
@@ -80,7 +80,7 @@ if [ $? -ne 0 ]; then
 fi
 echo "vscode installed!"
 
-reload_env
+source ~/.zshrc
 
 echo "Checking to see if vscode is on the path..."
 code --version > /dev/null 2>&1
