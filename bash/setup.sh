@@ -58,10 +58,10 @@ echo 'Python installed successfully!'
 
 
 echo "Installing class dependancies"
-pip install -r https://raw.githubusercontent.com/CSCI128/CourseSetup/main/requirements.txt
+pip install -r https://raw.githubusercontent.com/CSCI128/CourseSetup/main/requirements.txt --break-system-packages
 
 echo "Installing autograder dependancies"
-pip install -r https://raw.githubusercontent.com/CSCI128/128Autograder/main/source/requirements.txt
+pip install -r https://raw.githubusercontent.com/CSCI128/128Autograder/main/source/requirements.txt --break-system-packages
 
 source ~/.zshrc
 
