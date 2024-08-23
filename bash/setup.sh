@@ -57,7 +57,7 @@ fi
 echo 'Python installed successfully!'
 mkdir -p ~/.config/pip
 
-cat > .config/pip/pip.config << EOF
+cat > ~/.config/pip/pip.config << EOF
 [global]
 break-system-packages = true
 EOF
