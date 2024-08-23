@@ -55,13 +55,20 @@ if [ $? -ne 0 ]; then
 fi
 
 echo 'Python installed successfully!'
+mkdir -p ~/.config/pip
 
+cat > .config/pip/pip.config << EOF
+[global]
+break-system-packages = true
+EOF
+
+source ~/.zshrc
 
 echo "Installing class dependancies"
-pip install -r https://raw.githubusercontent.com/CSCI128/CourseSetup/main/requirements.txt --break-system-packages
+pip install -r https://raw.githubusercontent.com/CSCI128/CourseSetup/main/requirements.txt
 
 echo "Installing autograder dependancies"
-pip install -r https://raw.githubusercontent.com/CSCI128/128Autograder/main/source/requirements.txt --break-system-packages
+pip install -r https://raw.githubusercontent.com/CSCI128/128Autograder/main/source/requirements.txt
 
 source ~/.zshrc
 
