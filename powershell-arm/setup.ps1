@@ -19,12 +19,7 @@ $PythonWindowsURL = "https://www.python.org/ftp/python/3.12.8/$PythonVersion"
 If ((Get-CimInStance Win32_OperatingSystem).OSArchitecture -eq "64-Bit"){
     Write-Host "Detected 64 bit operating system"
 
-    $PythonWindowsURL = $PythonWindowsURL + "-amd64.exe"
-}
-Else {
-    # I swear if anyone has a 32 os imma cry
-    Write-Host "Detected 32 bit operating system"
-    $PythonWindowsURL = $PythonWindowsURL + ".exe"
+    $PythonWindowsURL = $PythonWindowsURL + "-arm64.exe"
 }
 
 
@@ -54,7 +49,18 @@ refresh-path
 
 # Course stuff
 Write-Host "Installing class packages..."
-pip install -r https://raw.githubusercontent.com/CSCI128/CourseSetup/main/requirements.txt --break-system-packges
+
+Invoke-WebRequest https://raw.githubusercontent.com/CSCI128/CourseSetup/refs/heads/main/fonttools-4.53.0-cp312-cp312-win_arm64.whl -OutFile "$($Env:temp)\fonttools.whl"
+pip install --break-system-packages "$($Env:temp)\fonttools.whl"
+
+Invoke-WebRequest https://raw.githubusercontent.com/CSCI128/CourseSetup/refs/heads/main/numpy-2.0.0-cp312-cp312-win_arm64.whl -OutFile "$($Env:temp)\numpy.whl"
+pip install --break-system-packages "$($Env:temp)\numpy.whl"
+
+Invoke-WebRequest https://raw.githubusercontent.com/CSCI128/CourseSetup/refs/heads/main/contourpy-1.2.1-cp312-cp312-win_arm64.whl -OutFile "$($Env:temp)\contourpy.whl"
+pip install --break-system-packages "$($Env:temp)\contourpy.whl"
+
+Invoke-WebRequest https://raw.githubusercontent.com/CSCI128/CourseSetup/refs/heads/main/matplotlib-3.9.0-cp312-cp312-win_arm64.whl -OutFile "$($Env:temp)\matplotlib.whl"
+pip install --break-system-packages "$($Env:temp)\matplotlib.whl"
 
 # Autograder stuff
 Write-Host "Installing 128 Autograder..."
