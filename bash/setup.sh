@@ -25,52 +25,45 @@ echo "export Path=/usr/local/bin:$PATH" >> ~/.zshrc && source  ~/.zshrc
 
 source ~/.zshrc
 
-echo "checking to see if python 3.11 or higher is installed..."
+echo "Installing Python 3.12..."
+brew install python@3.12
 
-python --version > /dev/null 2>&1
+echo "alias python=python3.12" >> ~/.zshrc
+echo "alias pip='python -m pip'" >> ~/.zshrc
 
-if [ $? -ne 0 ]; then
-    echo "Installing Python 3.12..."
-    brew install python@3.12
-
-    echo "alias python=python3.12" >> ~/.zshrc
-    echo "alias pip='python -m pip'" >> ~/.zshrc
-
-
-elif ! python -c 'import sys; assert sys.version_info >= (3,11)' > /dev/null; then
-    echo "Installing Python 3.12..."
-    brew install python@3.12
-
-    echo "alias python=python3.12" >> ~/.zshrc
-    echo "alias pip='python -m pip'" >> ~/.zshrc
-fi
 
 source ~/.zshrc
 
 python --version > /dev/null 2>&1
 
 if [ $? -ne 0 ]; then
-    echo 'Python installation failed! Please reach out on Ed with a screenshot of this error (and the lines proceeding it) to get help.'
+    echo 'Python installation failed! Please reach out on Ed or to Gregory Bell (gjbell@mines.edu) with a screenshot of this error (and the lines proceeding it) to get help.'
     exit 1
 fi
 
 echo 'Python installed successfully!'
-mkdir -p ~/.config/pip
-
-cat > ~/.config/pip/pip.conf << EOF
-[global]
-break-system-packages = true
-EOF
 
 source ~/.zshrc
 
 echo "Installing class dependancies"
-pip install -r https://raw.githubusercontent.com/CSCI128/CourseSetup/main/requirements.txt
+pip install -r https://raw.githubusercontent.com/CSCI128/CourseSetup/main/requirements.txt --break-system-packages
 
-echo "Installing autograder dependancies"
-pip install -r https://raw.githubusercontent.com/CSCI128/128Autograder/main/source/requirements.txt
+echo "Installing 128Autograder"
+pip install 128Autograder --break-system-packages
 
 source ~/.zshrc
+
+echo "Verifing autograder installed correctly..."
+
+test_my_work --version > /dev/null 2>&1
+
+if [$? -ne 0]; then
+    echo "Autograder failed to install!"
+    echo "Try running pip install '128Autograder --break-system-packages' and then running the script again."
+    echo 'Reach out on Ed or to Gregory Bell (gjbell@mines.edu) with questions!'
+    exit 1
+fi
+
 
 echo "Checking if vscode is installed"
 code --version > /dev/null 2>&1

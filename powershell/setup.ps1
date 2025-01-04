@@ -48,39 +48,28 @@ refresh-path
 
 Write-Host "Detecting if git is already installed..."
 
-Try {
-    git --version *>$null
-} Catch {
-    
-}
-
-if (-Not $?) {
-    Write-Host "Installing git..."
-    $exePath = "$env:TEMP\git.exe"
-
-# Download git installer
-    Invoke-WebRequest -Uri https://github.com/git-for-windows/git/releases/download/v2.37.1.windows.1/Git-2.37.1-64-bit.exe -UseBasicParsing -OutFile $exePath
-
-# Execute git installer
-    Start-Process $exePath -ArgumentList '/SILENT /NORESTART /NOCANCEL /SP- /CLOSEAPPLICATIONS /RESTARTAPPLICATIONS /COMPONENTS="icons,ext\reg\shellhere,assoc,assoc_sh"' -Wait
-
-# Optional: For bash.exe, add 'C:\Program Files\Git\bin' to PATH
-    [Environment]::SetEnvironmentVariable('Path', "$([Environment]::GetEnvironmentVariable('Path', 'Machine'));C:\Program Files\Git\bin", 'Machine')
-
-}
-
 refresh-path
 
 # Now for the pip packages!
 
 # Course stuff
 Write-Host "Installing class packages..."
-pip install -r https://raw.githubusercontent.com/CSCI128/CourseSetup/main/requirements.txt
+pip install -r https://raw.githubusercontent.com/CSCI128/CourseSetup/main/requirements.txt --break-system-packges
 
 # Autograder stuff
-# Ebic - we can do this with a web url!
-Write-Host "Installing autograder pacakges..."
-pip install -r https://raw.githubusercontent.com/CSCI128/128Autograder/main/source/requirements.txt
+Write-Host "Installing 128 Autograder..."
+pip install 128Autograder --break-system-packages
+
+Write-Host "Verifing autograder intalled correctly..."
+
+Try {
+    test_my_work --version *>$null
+} Catch {
+    Write-Host "Failed to installed 128 Autograder"
+    Write-Host "Try running 'pip install 128Autograder --break-system-packages' and the rerunning this script"
+    Write-Host "Otherwise, reach out on Ed with the error above, or email Gregory Bell (gjbell@mines.edu) for help!"
+    exit 1
+}
 
 
 # Now for VSCode!
