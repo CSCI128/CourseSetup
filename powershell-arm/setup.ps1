@@ -83,7 +83,7 @@ Try {
 
 Write-Host "Checking if VS Code is installed..."
 
-$VSCodeURL = "https://code.visualstudio.com/sha/download?build=stable&os=win32-x64-user"
+$VSCodeURL = "https://code.visualstudio.com/sha/download?build=stable&os=win32-arm64-user"
 
 Try {
     code --version *>$null
