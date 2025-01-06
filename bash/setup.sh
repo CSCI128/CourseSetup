@@ -57,7 +57,7 @@ echo "Verifing autograder installed correctly..."
 
 test_my_work --version > /dev/null 2>&1
 
-if [$? -ne 0]; then
+if [ $? -ne 0 ]; then
     echo "Autograder failed to install!"
     echo "Try running pip install '128Autograder --break-system-packages' and then running the script again."
     echo 'Reach out on Ed or to Gregory Bell (gjbell@mines.edu) with questions!'
