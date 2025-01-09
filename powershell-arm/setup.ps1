@@ -15,12 +15,7 @@ function install-python($PythonVersion, $PythonWindowsURL) {
 
 $PythonVersion = "python-3.12.8"
 $PythonWindowsURL = "https://www.python.org/ftp/python/3.12.8/$PythonVersion"
-
-If ((Get-CimInStance Win32_OperatingSystem).OSArchitecture -eq "64-Bit"){
-    Write-Host "Detected 64 bit operating system"
-
-    $PythonWindowsURL = $PythonWindowsURL + "-arm64.exe"
-}
+$PythonWindowsURL = $PythonWindowsURL + "-arm64.exe"
 
 
 Write-Host "Detecting if python is already installed..."
@@ -38,10 +33,6 @@ If (-Not $?) {
 }
 
 Write-Host "Python is installed! Refreshing path..."
-
-refresh-path
-
-Write-Host "Detecting if git is already installed..."
 
 refresh-path
 
