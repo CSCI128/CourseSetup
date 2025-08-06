@@ -64,7 +64,7 @@ Try {
 } Catch {
     Write-Host "Failed to installed 128 Autograder"
     Write-Host "Try running 'pip install 128Autograder --break-system-packages' and the rerunning this script"
-    Write-Host "Otherwise, reach out on Ed with the error above, or email Gregory Bell (gjbell@mines.edu) for help!"
+    Write-Host "Otherwise, reach out on Ed with the error above for help!"
     exit 1
 }
 
