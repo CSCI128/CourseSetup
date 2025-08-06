@@ -13,8 +13,8 @@ function install-python($PythonVersion, $PythonWindowsURL) {
     Start-Process -FilePath "$($Env:temp)\$PythonVersion.exe" -ArgumentList "/passive","InstallAllUsers=0","PrependPath=1","Include_launcher=0" -Wait
 }
 
-$PythonVersion = "python-3.12.8"
-$PythonWindowsURL = "https://www.python.org/ftp/python/3.12.8/$PythonVersion"
+$PythonVersion = "python-3.13.5"
+$PythonWindowsURL = "https://www.python.org/ftp/python/3.13.5/$PythonVersion"
 $PythonWindowsURL = $PythonWindowsURL + "-arm64.exe"
 
 
@@ -41,17 +41,17 @@ refresh-path
 # Course stuff
 Write-Host "Installing class packages..."
 
-Invoke-WebRequest https://raw.githubusercontent.com/CSCI128/CourseSetup/refs/heads/main/fonttools-4.53.0-cp312-cp312-win_arm64.whl -OutFile "$($Env:temp)\fonttools-4.53.0-cp312-cp312-win_arm64.whl"
-pip install --break-system-packages "$($Env:temp)\fonttools-4.53.0-cp312-cp312-win_arm64.whl"
+Invoke-WebRequest https://raw.githubusercontent.com/CSCI128/CourseSetup/refs/heads/main/fonttools-4.56.0-cp313-cp313-win_arm64.whl -OutFile "$($Env:temp)\fonttools-4.56.0-cp313-cp313-win_arm64.whl"
+pip install --break-system-packages "$($Env:temp)\fonttools-4.56.0-cp313-cp313-win_arm64.whl"
 
-Invoke-WebRequest https://raw.githubusercontent.com/CSCI128/CourseSetup/refs/heads/main/numpy-2.0.0-cp312-cp312-win_arm64.whl -OutFile "$($Env:temp)\numpy-2.0.0-cp312-cp312-win_arm64.whl"
-pip install --break-system-packages "$($Env:temp)\numpy-2.0.0-cp312-cp312-win_arm64.whl"
+Invoke-WebRequest https://raw.githubusercontent.com/CSCI128/CourseSetup/refs/heads/main/numpy-2.2.4-cp313-cp313-win_arm64.whl -OutFile "$($Env:temp)\numpy-2.2.4-cp313-cp313-win_arm64.whl"
+pip install --break-system-packages "$($Env:temp)\numpy-2.2.4-cp313-cp313-win_arm64.whl"
 
-Invoke-WebRequest https://raw.githubusercontent.com/CSCI128/CourseSetup/refs/heads/main/contourpy-1.2.1-cp312-cp312-win_arm64.whl -OutFile "$($Env:temp)\contourpy-1.2.1-cp312-cp312-win_arm64.whl"
-pip install --break-system-packages "$($Env:temp)\contourpy-1.2.1-cp312-cp312-win_arm64.whl"
+Invoke-WebRequest https://raw.githubusercontent.com/CSCI128/CourseSetup/refs/heads/main/contourpy-1.3.1-cp313-cp313-win_arm64.whl -OutFile "$($Env:temp)\contourpy-1.3.1-cp313-cp313-win_arm64.whl"
+pip install --break-system-packages "$($Env:temp)\contourpy-1.3.1-cp313-cp313-win_arm64.whl"
 
-Invoke-WebRequest https://raw.githubusercontent.com/CSCI128/CourseSetup/refs/heads/main/matplotlib-3.9.0-cp312-cp312-win_arm64.whl -OutFile "$($Env:temp)\matplotlib-3.9.0-cp312-cp312-win_arm64.whl"
-pip install --break-system-packages "$($Env:temp)\matplotlib-3.9.0-cp312-cp312-win_arm64.whl"
+Invoke-WebRequest https://raw.githubusercontent.com/CSCI128/CourseSetup/refs/heads/main/matplotlib-3.10.1-cp313-cp313-win_arm64.whl -OutFile "$($Env:temp)\matplotlib-3.10.1-cp313-cp313-win_arm64.whl"
+pip install --break-system-packages "$($Env:temp)\matplotlib-3.10.1-cp313-cp313-win_arm64.whl"
 
 # Autograder stuff
 Write-Host "Installing 128 Autograder..."
