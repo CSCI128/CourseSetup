@@ -25,10 +25,10 @@ echo "export Path=/usr/local/bin:$PATH" >> ~/.zshrc && source  ~/.zshrc
 
 source ~/.zshrc
 
-echo "Installing Python 3.12..."
-brew install python@3.12
+echo "Installing Python 3.13..."
+brew install python@3.13
 
-echo "alias python=python3.12" >> ~/.zshrc
+echo "alias python=python3.13" >> ~/.zshrc
 echo "alias pip='python -m pip'" >> ~/.zshrc
 
 
@@ -37,7 +37,7 @@ source ~/.zshrc
 python --version > /dev/null 2>&1
 
 if [ $? -ne 0 ]; then
-    echo 'Python installation failed! Please reach out on Ed or to Gregory Bell (gjbell@mines.edu) with a screenshot of this error (and the lines proceeding it) to get help.'
+    echo 'Python installation failed! Please reach out on Ed with a screenshot of this error (and the lines proceeding it) to get help.'
     exit 1
 fi
 
@@ -60,7 +60,7 @@ test_my_work --version > /dev/null 2>&1
 if [ $? -ne 0 ]; then
     echo "Autograder failed to install!"
     echo "Try running pip install '128Autograder --break-system-packages' and then running the script again."
-    echo 'Reach out on Ed or to Gregory Bell (gjbell@mines.edu) with questions!'
+    echo 'Reach out on Ed with questions!'
     exit 1
 fi
 
