@@ -57,12 +57,12 @@ pip install --break-system-packages "$($Env:temp)\matplotlib-3.10.1-cp313-cp313-
 Write-Host "Installing 128 Autograder..."
 pip install 128Autograder --break-system-packages
 
-Write-Host "Verifing autograder intalled correctly..."
+Write-Host "Verifing autograder installed correctly..."
 
 Try {
     test_my_work --version *>$null
 } Catch {
-    Write-Host "Failed to installed 128 Autograder"
+    Write-Host "Failed to install 128 Autograder"
     Write-Host "Try running 'pip install 128Autograder --break-system-packages' and the rerunning this script"
     Write-Host "Otherwise, reach out on Ed with the error above for help!"
     exit 1

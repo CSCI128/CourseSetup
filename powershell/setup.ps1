@@ -60,14 +60,14 @@ pip install -r https://raw.githubusercontent.com/CSCI128/CourseSetup/main/requir
 Write-Host "Installing 128 Autograder..."
 pip install 128Autograder --break-system-packages
 
-Write-Host "Verifing autograder intalled correctly..."
+Write-Host "Verifing autograder installed correctly..."
 
 Try {
     test_my_work --version *>$null
 } Catch {
     Write-Host "Failed to installed 128 Autograder"
     Write-Host "Try running 'pip install 128Autograder --break-system-packages' and the rerunning this script"
-    Write-Host "Otherwise, reach out on Ed with the error above, or email Gregory Bell (gjbell@mines.edu) for help!"
+    Write-Host "Otherwise, reach out on Ed with the error above for help!"
     exit 1
 }
 
