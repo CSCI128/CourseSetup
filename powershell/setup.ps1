@@ -54,7 +54,7 @@ refresh-path
 
 # Course stuff
 Write-Host "Installing class packages..."
-pip install -r https://raw.githubusercontent.com/CSCI128/CourseSetup/main/requirements.txt --break-system-packges
+pip install -r https://raw.githubusercontent.com/CSCI128/CourseSetup/main/requirements.txt --break-system-packages
 
 # Autograder stuff
 Write-Host "Installing 128 Autograder..."
