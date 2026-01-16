@@ -64,6 +64,7 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
+pip install matplotlib --break-system-packages
 
 echo "Checking if vscode is installed"
 code --version > /dev/null 2>&1
