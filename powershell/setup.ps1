@@ -72,37 +72,37 @@ Try {
 }
 
 
-# Now for VSCode!
-# VS code doesnt have a 32bit installer. Good.
+# Now for VSCodium!
+# VSCodium doesnt have a 32bit installer. Good.
 
-Write-Host "Checking if VS Code is installed..."
+Write-Host "Checking if VSCodium is installed..."
 
-$VSCodeURL = "https://code.visualstudio.com/sha/download?build=stable&os=win32-x64-user"
+$VSCodeURL = "https://github.com/VSCodium/vscodium/releases/download/1.126.04524/VSCodiumUserSetup-x64-1.126.04524.exe"
 
 Try {
-    code --version *>$null
+    codium --version *>$null
 } Catch {
     # Do nothing - the error is expected
 }
 
 If (-Not $?){
-    Write-Host "VS Code is not installed! Downloading VS Code..."
+    Write-Host "VSCodium is not installed! Downloading VSCodium..."
     Write-Host "(This might take a minute!)"
-    Invoke-WebRequest $VSCodeURL -OutFile "$($Env:temp)\vscode-installer.exe"
+    Invoke-WebRequest $VSCodeURL -OutFile "$($Env:temp)\codium-installer.exe"
 
-    Write-Host "VS Code downloaded! Installing..."
-    Start-Process -FilePath "$($Env:temp)\vscode-installer.exe" -ArgumentList "/SILENT","/MERGETASKS=!runcode","/SUPPRESSMSGBOXES" -Wait
+    Write-Host "VSCodium downloaded! Installing..."
+    Start-Process -FilePath "$($Env:temp)\codium-installer.exe" -ArgumentList "/SILENT","/MERGETASKS=!runcode","/SUPPRESSMSGBOXES" -Wait
 }
 
-Write-Host "VS Code is installed!"
+Write-Host "VSCodium is installed!"
 
 refresh-path
 
-Write-Host "Installing Python Extension for VS Code..."
+Write-Host "Installing Python Extension for VSCodium..."
 Try {
-    code --install-extension ms-python.python
+    codium --install-extension ms-python.python
 } Catch {
-    Write-Host "Failed to install Python Extension! Please refer to https://marketplace.visualstudio.com/items?itemName=ms-python.python to install the extension!"
+    Write-Host "Failed to install Python Extension! Please run VSCodium and install the Python extension manually"
 }
 
 Write-Host "Course setup is complete!"
