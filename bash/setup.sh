@@ -66,36 +66,36 @@ fi
 
 pip install matplotlib --break-system-packages
 
-echo "Checking if vscode is installed"
-code --version > /dev/null 2>&1
+echo "Checking if VSCodium is installed"
+codium --version > /dev/null 2>&1
 
 if [ $? -ne 0 ]; then
-    echo "Vscode is not installed! Installing..."
-    echo "If you have already installed vs code, nothing will be modified."
-    brew install --cask visual-studio-code
+    echo "Vscodium is not installed! Installing..."
+    echo "If you have already installed VSCodium, nothing will be modified."
+    brew install --cask vscodium
 
     if [ $? -ne 0 ]; then
-        echo 'Unable to automatically install VS code. Please follow directions at this link under the "Installation" header: https://code.visualstudio.com/docs/setup/mac'
+        echo 'Unable to automatically install VSCodium. Please download and install the MacOS .dmg file linked here: https://github.com/VSCodium/vscodium/releases'
         exit 1
     fi
 fi
-echo "vscode installed!"
+echo "VSCodium installed!"
 
 source ~/.zshrc
 
-echo "Checking to see if vscode is on the path..."
-code --version > /dev/null 2>&1
+echo "Checking to see if VSCodium is on the path..."
+codium --version > /dev/null 2>&1
 
 if [ $? -ne 0 ]; then
-    echo 'Unable to automatically install python extension for VS code. Please follow directions at this link: https://marketplace.visualstudio.com/items?itemName=ms-python.python'
+    echo 'Unable to automatically install python extension for VSCodium. Please run VSCodium and install the Python extension manually'
     exit 1
 fi
 
 
-code --install-extension ms-python.python
+codium --install-extension ms-python.python
 
 if [ $? -ne 0 ]; then
-    echo 'Unable to automatically install python extension for VS code. Please follow directions at this link: https://marketplace.visualstudio.com/items?itemName=ms-python.python'
+    echo 'Unable to automatically install python extension for VSCodium. Please run VSCodium and install the Python extension manually'
     exit 1
 fi
 
